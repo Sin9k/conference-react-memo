@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shower Presentation Engine</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="node_modules/@shower/material/styles/styles.css"
+    />
+    <style>
+      .shower {
+        --slide-ratio: calc(16 / 9);
+      }
+
+      .cover {
+        z-index: 1;
+      }
+
+      .slide {
+        background: url("pictures/background.png");
+      }
+
+      .slide h1,
+      .slide h2,
+      .slide h3,
+      .slide h4,
+      .slide h5,
+      .slide h6 {
+        color: #58c3e9;
+      }
+
+      .slide li {
+        color: #71bbb9;
+      }
+
+      .slide pre code {
+        color: #71bbb9;
+      }
+
+      .slide li:before,
+      .slide pre code:before {
+        color: #497f91 !important;
+      }
+
+      .chapter h1 {
+        font-size: 96px;
+        line-height: 120px;
+        text-align: center;
+      }
+
+      .title-with-code {
+        padding-top: 60px;
+      }
+
+      .title-with-code h1 {
+        margin-top: 0;
+      }
+
+      .slide pre code.mark {
+        background-color: #00008b !important;
+      }
+    </style>
+  </head>
+  <body class="shower list">
+    <header class="caption">
+      <h1>Shower Presentation Engine</h1>
+      <p>Yours Truly, Famous Inc.</p>
+    </header>
+
+    <!-- 1. LOGO -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/logo.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 2. hello -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/hello.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 3. subscribe -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/subscribe.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 4. ЗАЧЕМ? -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/why.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 5. А ВЫ ЗНАЕТЕ? -->
+    <section class="slide">
+      <h1>А вы знаете ...</h1>
+      <ul>
+        <li class="next">что такое <u>SimpleMemoComponent</u>?</li>
+        <li class="next">как улучшить перфоманс не используя <u>memo</u>?</li>
+        <li class="next">
+          слух, что <u>memo</u> станет дэфолтным поведением компонентов?
+        </li>
+        <li class="next">
+          где грань, когда <u>memo</u> не ускоряет, а замедляет компонент?
+        </li>
+        <li class="next">и многое другое</li>
+      </ul>
+    </section>
+
+    <!-- 6. Заголовок, обсудим базу -->
+    <section class="slide chapter">
+      <h1>Начнем с основ</h1>
+    </section>
+
+    <!-- 7. useMemo() !== memo()? -->
+    <section class="slide">
+      <h1 style="font-size: 64px; text-align: center">
+        useMemo(&nbsp;)&nbsp;&nbsp;&nbsp;!==&nbsp;&nbsp;&nbsp;memo(&nbsp;)
+      </h1>
+      <h1
+        style="font-size: 64px; text-align: center; color: #71bbb9"
+        class="next"
+      >
+        Hook&nbsp; &nbsp;&nbsp;&nbsp;!==&nbsp;&nbsp;&nbsp;HOC
+      </h1>
+    </section>
+
+    <!-- 8. Виртуальное дерево -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/virtual-tree.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 9. currentHooks -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/currentHooks.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 10. workInProgressHooks -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/workInProgressHooks.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 11. newCurrentHooks -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/newCurrentHooks.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 12. virtual tree with hooks -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/virtual-tree-with-hooks.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 13. virtual tree with HOC -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/virtual-tree-with-HOC.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 14. Заголовок, исходники -->
+    <section class="slide chapter">
+      <h1>Исходники</h1>
+    </section>
+
+    <!-- 15. внимательно -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/attention.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 16. Как выглядит JSX? -->
+    <section class="slide title-with-code">
+      <h1>Как выглядит JSX?</h1>
+      <pre>
+        <code>const someButton = (</code>
+        <code>  &lt;button onClick={() => {...}}&gt;</code>
+        <code>    Нажми меня</code>
+        <code>  &lt;/button&gt;</code>
+        <code>)</code>
+        <code> </code>
+        <code>console.log(someButton)</code>
+    </pre>
+    </section>
+
+    <!-- 17. Узел Виртуального DOM -->
+    <section class="slide title-with-code">
+      <h1>Узел Виртуального DOM</h1>
+      <pre>
+        <code>{</code>
+        <code>  $$typeof: Symbol(react.element),</code>
+        <code>  type: 'button',</code>
+        <code>  props: {</code>
+        <code>    children: 'Нажми меня',</code>
+        <code>    onClick: () => { ... }</code>
+        <code>  }</code>
+        <code>}</code>
+    </pre>
+    </section>
+
+    <!-- 18. Узел React.memo -->
+    <section class="slide title-with-code">
+      <h1>
+        Узел React.memo
+        <a
+          href="https://github.com/facebook/react/blob/v17.0.2/packages/react/src/ReactMemo.js#L12"
+          target="_blank"
+          >(исходники)</a
+        >
+      </h1>
+      <pre>
+        <code>{</code>
+        <code>  $$typeof: REACT_MEMO_TYPE,</code>
+        <code>  type,</code>
+        <code>  compare: compare === undefined ? null : compare,</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 19. Обработка REACT_MEMO_TYPE -->
+    <section class="slide title-with-code">
+      <h1>
+        Обработчик REACT_MEMO_TYPE
+        <a
+          href="https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiber.new.js#L512"
+          target="_blank"
+          >(исходники)</a
+        >
+      </h1>
+      <pre>
+        <code>export function createFiberFromTypeAndProps(type, ...) {</code>
+        <code>  switch (type.$$typeof) {</code>
+        <code>    case REACT_MEMO_TYPE: {</code>
+        <code>      fiberTag = MemoComponent;</code>
+        <code>      break getTag;</code>
+        <code>    }</code>
+        <code>  }</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 20. Обработка MemoComponent -->
+    <section class="slide title-with-code">
+      <h1>
+        Обработчик MemoComponent
+        <a
+          href="https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3389"
+          target="_blank"
+          >(исходники)</a
+        >
+      </h1>
+      <pre>
+        <code>function beginWork(current, workInProgress, renderLanes) {</code>
+        <code>  switch (workInProgress.tag) {</code>
+        <code>    case MemoComponent:</code>
+        <code>      return updateMemoComponent(...)</code>
+        <code>    case SimpleMemoComponent:</code>
+        <code>      return updateSimpleMemoComponent(...)</code>
+        <code>  }</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 21. Что мы узнали о SimpleMemoComponent -->
+    <section class="slide">
+      <h1>Что мы узнали о SimpleMemoComponent:</h1>
+      <ul>
+        <li class="next">он автоматически присваивается на первом рендере</li>
+        <li class="next">он экономит ресурсы</li>
+      </ul>
+    </section>
+
+    <!-- 22. Когда наш компонент станет SimpleMemoComponent: -->
+    <section class="slide">
+      <h1>memo( ) станет SimpleMemoComponent, если:</h1>
+      <ul>
+        <li class="next">Вы не используете defaultProps</li>
+        <li class="next">Вы не оборачиваете классовый компонент</li>
+        <li class="next">Вы не передаете кастомную функцию compare</li>
+      </ul>
+    </section>
+
+    <!-- 23. Ускоряем проект без Memo -->
+    <section class="slide chapter">
+      <h1>Ускоряем проект без memo( )</h1>
+    </section>
+
+    <!-- 24. Волшебное слово -->
+    <section class="slide">
+      <h1>Волшебное слово в React:</h1>
+      <h1 class="next" style="color: #71bbb9">Dan Abramov</h1>
+      <h1 class="next">
+        Статья: <span style="color: #71bbb9">"Before You memo( )"</span>
+        <a href="https://overreacted.io/before-you-memo/" target="_blank"
+          >(ссылка)</a
+        >
+      </h1>
+    </section>
+
+    <!-- 25. Используйте memo -->
+    <section class="slide">
+      <pre>
+        <code>const ExpensiveTree = () => {</code>
+        <code>  let now = perfomance.now();</code>
+        <code class="mark">  while (perfomance.now() - now &lt; 100) { // do nothing }</code>
+        <code>&nbsp;</code>
+        <code>  return &lt;p&gt;I am slow component&lt;/p&gt;</code>
+        <code>}</code>
+        <code>&nbsp;</code>
+        <code>export default ExpensiveTree;</code>
+      </pre>
+    </section>
+
+    <!-- 26. App компонент -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code class="mark">  const [color, setColor] = useState("red");</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code>      &lt;input value={color} onChange={(e) => setColor(...)} /&gt;</code>
+        <code>      &lt;p style={{ color }}&gt; Hi! &lt;/p&gt;</code>
+        <code>      &lt;ExpensiveTree /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 27. App компонент -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [color, setColor] = useState("red");</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code class="mark">      &lt;input value={color} onChange={(e) => setColor(...)} /&gt;</code>
+        <code>      &lt;p style={{ color }}&gt; Hi! &lt;/p&gt;</code>
+        <code>      &lt;ExpensiveTree /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 28. App компонент -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [color, setColor] = useState("red");</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code>      &lt;input value={color} onChange={(e) => setColor(...)} /&gt;</code>
+        <code class="mark">      &lt;p style={{ color }}&gt; Hi! &lt;/p&gt;</code>
+        <code>      &lt;ExpensiveTree /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 29. App компонент -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [color, setColor] = useState("red");</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code>      &lt;input value={color} onChange={(e) => setColor(...)} /&gt;</code>
+        <code>      &lt;p style={{ color }}&gt; Hi! &lt;/p&gt;</code>
+        <code class="mark">      &lt;ExpensiveTree /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 30. Используйте memo -->
+    <section class="slide">
+      <pre>
+        <code>const ExpensiveTree = () => {</code>
+        <code>  let now = perfomance.now();</code>
+        <code>  while (perfomance.now() - now &lt; 100) { // do nothing }</code>
+        <code>&nbsp;</code>
+        <code>  return &lt;p&gt;I am slow component&lt;/p&gt;</code>
+        <code>}</code>
+        <code>&nbsp;</code>
+        <code class="mark">export default memo(ExpensiveTree);</code>
+      </pre>
+    </section>
+
+    <!-- 31. Выносим Form -->
+    <section class="slide">
+      <pre>
+        <code>const Form = () => {</code>
+        <code>  const [color, setColor] = useState("red");</code>
+        <code>  return (</code>
+        <code class="mark">    &lt;&gt;</code>
+        <code>      &lt;input value={color} onChange={(e) => setColor(...)} /&gt;</code>
+        <code>      &lt;p style={{ color }}&gt; Hi! &lt;p&gt;</code>
+        <code class="mark">    &lt;/&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 32. Смотрим на App -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code class="mark">      &lt;Form /&gt;</code>
+        <code>      &lt;ExpensiveTree /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 33. Второй способ -->
+    <section class="slide chapter">
+      <h1>Решение #2</h1>
+    </section>
+
+    <!-- 34. Вспомним ситуацию -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [color, setColor] = useState("red");</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code>      &lt;input value={color} onChange={(e) => setColor(...)} /&gt;</code>
+        <code>      &lt;p style={{ color }}&gt; Hi! &lt;/p&gt;</code>
+        <code class="mark">      &lt;ExpensiveTree /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 35. App -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  return (</code>
+        <code>    &lt;ColorPicker&gt;</code>
+        <code class="mark">      &lt;ExpensiveTree /&gt;</code>
+        <code>    &lt;/ColorPicker&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 36. ColorPicker -->
+    <section class="slide">
+      <pre>
+        <code>const ColorPicker = ({ children }) => {</code>
+        <code>  const [color, setColor] = useState("red");</code>
+        <code>  return (</code>
+        <code>    &lt;div&gt;</code>
+        <code>      &lt;input value={color} onChange={(e) => setColor(...)} /&gt;</code>
+        <code>      &lt;p style={{ color }}&gt; Hi! &lt;/p&gt;</code>
+        <code class="mark">      {children}</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 37. Сплетни -->
+    <section class="slide chapter">
+      <h1>Сплетни</h1>
+    </section>
+
+    <!-- 38. useMemo() !== memo()? -->
+    <section class="slide">
+      <h1
+        style="
+          font-size: 64px;
+          text-align: center;
+          color: #71bbb9;
+          line-height: 180px;
+        "
+      >
+        memo(&nbsp;)&nbsp;&nbsp;&nbsp;!==&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;<span
+          style="color: #58c3e9"
+          >???</span
+        >
+      </h1>
+    </section>
+
+    <!-- 39. for what -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/for-what.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 40. коммент на стаковерфлоу -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/stackoverflow.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 41. коммент на стаковерфлоу с выделением -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/stackoverflow-backward.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 42. коммент на стаковерфлоу с последним выделением -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/stackoverflow-only-reason.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 43. пруф -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/proof.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 44. идея! -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/lampo4ka.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 45. connect-observer -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/connect-observer.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 46. react issue -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/when-not-use-memo.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 47. react issue question -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/when-not-use-memo-question.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 48. react issue likes -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/when-not-use-memo-likes.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 49. react issue date -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/when-not-use-memo-date.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 50. mark erikson -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/mark-erikson.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 51. Момент #1 -->
+    <section class="slide chapter">
+      <h1>Момент #1</h1>
+    </section>
+
+    <!-- 52. MemoComponents -->
+    <section class="slide">
+      <pre>
+        <code>const MemoWrapper = memo(Wrapper);</code>
+        <code>const MemoChild = memo(Child);</code>
+        <code>&nbsp;</code>
+        <code>const App = () => {</code>
+        <code> // ...</code>
+        <code>}</code>
+        <code>&nbsp;</code>
+      </pre>
+    </section>
+
+    <!-- 53. MemoChild App -->
+    <section class="slide">
+      <pre>
+        <code class="mark">const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code>      &lt;MemoChild /&gt;</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 54. MemoChild state -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code class="mark">  const [value, setValue] = useState("");</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code>      &lt;MemoChild /&gt;</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 55. MemoChild input -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code>  return (</code>
+        <code class="mark">    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code>      &lt;MemoChild /&gt;</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 56. MemoChild -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code class="mark">      &lt;MemoChild /&gt;</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 57. MemoWrapper -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code class="mark">    &lt;MemoWrapper&gt;</code>
+        <code>      &lt;MemoChild /&gt;</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 58. MemoChild input -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code>  return (</code>
+        <code class="mark">    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code>      &lt;MemoChild /&gt;</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 59. MemoChild and one more component -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code class="mark">  const memoChild = &lt;MemoChild /&gt;</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code>      {memoChild}</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 60. Узел Виртуального DOM -->
+    <section class="slide title-with-code">
+      <h1>console.log(&lt;MemoChild /&gt;)</h1>
+      <pre>
+        <code>{</code>
+        <code>  $$typeof: Symbol(react.element),</code>
+        <code>  props: {}</code>
+        <code>  type: {</code>
+        <code>    $$typeof: Symbol(react.memo),</code>
+        <code>    // ...</code>
+        <code>  }</code>
+        <code>}</code>
+    </pre>
+    </section>
+
+    <!-- 61. useMemo -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code class="mark">  const memoChild = useMemo(() => &lt;MemoChild /&gt;, [])</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code>      {memoChild}</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 62. memoChildren -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code>  const memoChild = useMemo(() => &lt;MemoChild /&gt;, [])</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code class="mark">      {memoChild}</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 63. memoChildren -->
+    <section class="slide">
+      <pre>
+        <code>const App = () => {</code>
+        <code>  const [value, setValue] = useState("");</code>
+        <code>&nbsp;</code>
+        <code>  return (</code>
+        <code>    &lt;input value={value} onChange={(e) => setValue(...)} /&gt;</code>
+        <code>    &lt;MemoWrapper&gt;</code>
+        <code class="mark">      &lt;MemoChild /&gt;</code>
+        <code>    &lt;/MemoWrapper&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 64. Момент #2 -->
+    <section class="slide chapter">
+      <h1>Момент #2</h1>
+    </section>
+
+    <!-- 65. Как выглядит новый компонент -->
+    <section class="slide">
+      <h1 style="text-align: center">
+        NewApp ===
+        <span style="color: #71bbb9">shallowEqual(</span>App<span
+          style="color: #71bbb9"
+          >)</span
+        >
+      </h1>
+    </section>
+
+    <!-- 66. connect-observer -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/connect-observer.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 67. double shallowEqual -->
+    <section class="slide" style="padding-left: 0; padding-right: 0">
+      <h1 style="text-align: center">
+        NewApp ===
+        <span style="color: #71bbb9">shallowEqual(</span>App<span
+          style="color: #71bbb9"
+          >)</span
+        >
+      </h1>
+      <h1 style="text-align: center">
+        <span style="color: #71bbb9">connect(</span>NewApp<span
+          style="color: #71bbb9"
+          >)</span
+        >
+        ===
+        <span style="color: #71bbb9">shallowEqual(shallowEqual(</span>App<span
+          style="color: #71bbb9"
+          >))</span
+        >
+      </h1>
+      <h1 style="text-align: center">
+        <span style="color: #71bbb9">observer(</span>NewApp<span
+          style="color: #71bbb9"
+          >)</span
+        >
+        ===
+        <span style="color: #71bbb9">shallowEqual(shallowEqual(</span>App<span
+          style="color: #71bbb9"
+          >))</span
+        >
+      </h1>
+    </section>
+
+    <!-- 68. link to blog -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/link-to-blog.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 69. everything title -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/everything.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 70. everything question -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/everything-question.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 71. everything answer -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/everything-answer.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 72. abramov tweet -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/Abramov-tweet.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 73. useMemo() !== memo()? -->
+    <section class="slide">
+      <h1
+        style="
+          font-size: 64px;
+          text-align: center;
+          color: #71bbb9;
+          margin: 50px 0 0;
+        "
+      >
+        memo(&nbsp;)&nbsp;&nbsp;&nbsp;!==&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;<span
+          style="color: #58c3e9"
+          >???</span
+        >
+      </h1>
+      <h1 class="next" style="font-size: 64px; text-align: center; margin: 0">
+        Скорее всего нет
+      </h1>
+    </section>
+
+    <!-- 74. Грань полезности -->
+    <section class="slide chapter">
+      <h1>Грань полезности</h1>
+    </section>
+
+    <!-- 75. ребус N* memo -->
+    <section class="slide">
+      <h1
+        style="
+          font-size: 64px;
+          text-align: center;
+          color: #71bbb9;
+          line-height: 180px;
+        "
+      >
+        N&nbsp;&nbsp;*&nbsp;&nbsp;memo(&nbsp;)&nbsp;&nbsp;&nbsp;===&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;render
+      </h1>
+    </section>
+
+    <!-- 76. perfomance now -->
+    <section class="slide">
+      <h1>Как я замерял результат:</h1>
+      <pre>
+        <code>const t0 = perfomance.now();</code>
+        <code>doSomething();</code>
+        <code>const t1 = perfomance.now();</code>
+        <code>&nbsp;</code>
+        <code>console.log(`result: ${t1 - t0} milliseconds`);</code>
+      </pre>
+    </section>
+
+    <!-- 77. Counter -->
+    <section class="slide">
+      <pre>
+        <code>const Counter = () => {</code>
+        <code>  const [counter, setCounter] = useState(1);</code>
+        <code>  useEffect(() => {</code>
+        <code>    if (counter &lt;= 100000) {</code>
+        <code>      setCounter((value) => value + 1);</code>
+        <code>    }</code>
+        <code>  })</code>
+        <code>  return &lt;MemoChild /&gt;;</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 78. Counter useState -->
+    <section class="slide">
+      <pre>
+        <code>const Counter = () => {</code>
+        <code class="mark">  const [counter, setCounter] = useState(1);</code>
+        <code>  useEffect(() => {</code>
+        <code>    if (counter &lt;= 100000) {</code>
+        <code>      setCounter((value) => value + 1);</code>
+        <code>    }</code>
+        <code>  })</code>
+        <code>  return &lt;MemoChild /&gt;;</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 79. Counter setCounter -->
+    <section class="slide">
+      <pre>
+        <code>const Counter = () => {</code>
+        <code>  const [counter, setCounter] = useState(1);</code>
+        <code>  useEffect(() => {</code>
+        <code>    if (counter &lt;= 100000) {</code>
+        <code class="mark">      setCounter((value) => value + 1);</code>
+        <code>    }</code>
+        <code>  })</code>
+        <code>  return &lt;MemoChild /&gt;;</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 80. Counter if -->
+    <section class="slide">
+      <pre>
+        <code>const Counter = () => {</code>
+        <code>  const [counter, setCounter] = useState(1);</code>
+        <code>  useEffect(() => {</code>
+        <code class="mark">    if (counter &lt;= 100000) {</code>
+        <code>      setCounter((value) => value + 1);</code>
+        <code>    }</code>
+        <code>  })</code>
+        <code>  return &lt;MemoChild /&gt;;</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 81. Counter if -->
+    <section class="slide">
+      <h1>Примитивный компонент</h1>
+      <pre>
+        <code>const Child = () => {</code>
+        <code>  return &lt;span&gt;I'm a child&lt;/span&gt;;</code>
+        <code>}</code>
+        <code>&nbsp;</code>
+        <code>const MemoChild = memo(Child);</code>
+        <code>&nbsp;</code>
+      </pre>
+    </section>
+
+    <!-- 82. Counter if -->
+    <section class="slide">
+      <h1>Примитивный компонент</h1>
+      <pre>
+        <code>const Child = () => {</code>
+        <code>  return &lt;span&gt;I'm a child&lt;/span&gt;;</code>
+        <code>}</code>
+        <code>&nbsp;</code>
+        <code class="mark">const MemoChild = memo(Child);</code>
+        <code>&nbsp;</code>
+      </pre>
+    </section>
+
+    <!-- 83. Counter without memo -->
+    <section class="slide">
+      <h1>Примитивный компонент</h1>
+      <pre>
+        <code>const Child = () => {</code>
+        <code>  return &lt;span&gt;I'm a child&lt;/span&gt;;</code>
+        <code>}</code>
+        <code>&nbsp;</code>
+        <code class="mark">const MemoChild = Child;</code>
+        <code>&nbsp;</code>
+      </pre>
+    </section>
+
+    <!-- 84. table -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/table.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 85. complex Counter -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/complex-counter.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 86. complex table memo -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/table-complex-memo.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 87. complex table no memo -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/table-complex-counter-no-memo.jpg"
+        alt="Hands on the orange typewriter in a park"
+        style="padding-bottom: 3px"
+      />
+    </section>
+
+    <!-- 88. complex table savings -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/table-complex-child-save.jpg"
+        alt="Hands on the orange typewriter in a park"
+        style="padding-top: 3px"
+      />
+    </section>
+
+    <!-- 89. Опции -->
+    <section class="slide">
+      <h1>Нюансы:</h1>
+      <ul>
+        <li class="next"><u>memo</u> всегда предотвращает рендер</li>
+        <li class="next">без <u>memo</u> - всегда рендерим</li>
+        <li class="next" style="color: #58c3e9">
+          <u>memo</u> предотвращает 1 из 10 рендеров
+        </li>
+      </ul>
+    </section>
+
+    <!-- 90. table 1 of 10 -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/table-1-of-10.jpg"
+        alt="Hands on the orange typewriter in a park"
+        style="padding-top: 3px"
+      />
+    </section>
+
+    <!-- 91. table 1 of 10 memo -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/table-1-of-10-memo.jpg"
+        alt="Hands on the orange typewriter in a park"
+        style="padding-top: 7px"
+      />
+    </section>
+
+    <!-- 92. table 1 of 10 savings -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/table-1-of-10-savings.jpg"
+        alt="Hands on the orange typewriter in a park"
+        style="padding-top: 7px"
+      />
+    </section>
+
+    <!-- 93. ребус N * memo -->
+    <section class="slide">
+      <h1
+        style="
+          font-size: 64px;
+          text-align: center;
+          color: #71bbb9;
+          line-height: 180px;
+        "
+      >
+        <span style="color: #58c3e9">23</span
+        >&nbsp;&nbsp;*&nbsp;&nbsp;memo(&nbsp;)&nbsp;&nbsp;&nbsp;===&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;render
+      </h1>
+    </section>
+
+    <!-- 94. Выгода -->
+    <section class="slide">
+      <h1
+        style="
+          font-size: 64px;
+          text-align: center;
+          color: #71bbb9;
+          line-height: 180px;
+        "
+      >
+        <span style="color: #58c3e9; text-decoration: underline"
+          >1&nbsp;из&nbsp;10</span
+        >&nbsp;-&nbsp;это&nbsp;выгодно&nbsp;!
+      </h1>
+    </section>
+
+    <!-- 95. Блок-схема -->
+    <section class="slide chapter">
+      <h1>Блок-схема</h1>
+    </section>
+
+    <!-- 96. block 1 of 10 -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/block-1-of-10.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 97. block 1 of 10 -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/block-no-memo.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 98. block 1 of 10 -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/block-1-of-10-yes.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 99. block 1 of 10 -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/block-1-of-10-yes-yes.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 100. block 1 of 10 -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/block-1-of-10-yes-no.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 101. Тестируем Блок-схема -->
+    <section class="slide chapter">
+      <h1>Тестируем блок схему #1</h1>
+    </section>
+
+    <!-- 102. Cars -->
+    <section class="slide">
+      <pre>
+        <code>const Cars = () => {</code>
+        <code>  const cars = useGetCars();</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;Header /&gt;</code>
+        <code>      {cars.map((car) => &lt;Car key={car.id} car={car} /&gt;)}</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 103. Cars -->
+    <section class="slide">
+      <pre>
+        <code class="mark">const Cars = () => {</code>
+        <code>  const cars = useGetCars();</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;Header /&gt;</code>
+        <code>      {cars.map((car) => &lt;Car key={car.id} car={car} /&gt;)}</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 104. Cars -->
+    <section class="slide">
+      <pre>
+        <code>const Cars = () => {</code>
+        <code class="mark">  const cars = useGetCars();</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;Header /&gt;</code>
+        <code>      {cars.map((car) => &lt;Car key={car.id} car={car} /&gt;)}</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 105. Cars -->
+    <section class="slide">
+      <pre>
+        <code>const Cars = () => {</code>
+        <code>  const cars = useGetCars();</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;Header /&gt;</code>
+        <code class="mark">      {cars.map((car) => &lt;Car key={car.id} car={car} /&gt;)}</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 106. Cars -->
+    <section class="slide">
+      <pre>
+        <code>const Cars = () => {</code>
+        <code>  const cars = useGetCars();</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code class="mark">      &lt;Header /&gt;</code>
+        <code>      {cars.map((car) => &lt;Car key={car.id} car={car} /&gt;)}</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 107. header 1 of 10 -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/header-1-of-10.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 108. header 1 of 10 yes -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/header-1-of-10-yes.jpg"
+        alt="Hands on the orange typewriter in a park"
+        style="padding-bottom: 1px"
+      />
+    </section>
+
+    <!-- 109. header 1 of 10 yes yes -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/header-1-of-10-yes-yes.jpg"
+        alt="Hands on the orange typewriter in a park"
+        style="padding-bottom: 7px"
+      />
+    </section>
+
+    <!-- 110. Cars -->
+    <section class="slide">
+      <pre>
+        <code>const CarsPage = () => {</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;Header /&gt;</code>
+        <code class="mark">      &lt;Cars /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 111. Тестируем Блок-схема #2 -->
+    <section class="slide chapter">
+      <h1>Тестируем блок схему #2</h1>
+    </section>
+
+    <!-- 112. User -->
+    <section class="slide">
+      <pre>
+        <code>const User = ({ user }) => {</code>
+        <code>  const isOnline = user.isBlockedMe ? false : user.isOnline;</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;p&gt;{user.username}&lt;/p&gt;</code>
+        <code>      &lt;img src={user.avatar} /&gt;</code>
+        <code>      &lt;OnlineIndicator isOnline={isOnline} /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 113. User isBlockedMe -->
+    <section class="slide">
+      <pre>
+        <code>const User = ({ user }) => {</code>
+        <code class="mark">  const isOnline = user.isBlockedMe ? false : user.isOnline;</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;p&gt;{user.username}&lt;/p&gt;</code>
+        <code>      &lt;img src={user.avatar} /&gt;</code>
+        <code>      &lt;OnlineIndicator isOnline={isOnline} /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 114. User OnlineIndicator -->
+    <section class="slide">
+      <pre>
+        <code>const User = ({ user }) => {</code>
+        <code>  const isOnline = user.isBlockedMe ? false : user.isOnline;</code>
+        <code>  return (</code>
+        <code>    &lt;div className="container"&gt;</code>
+        <code>      &lt;p&gt;{user.username}&lt;/p&gt;</code>
+        <code>      &lt;img src={user.avatar} /&gt;</code>
+        <code class="mark">      &lt;OnlineIndicator isOnline={isOnline} /&gt;</code>
+        <code>    &lt;/div&gt;</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 115. #2-yes -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/2-yes.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 116. #2-yes-or-no -->
+    <section class="slide" style="background: black">
+      <img
+        class="cover"
+        src="pictures/2-yes-or-no.jpg"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <!-- 117. User -->
+    <section class="slide">
+      <pre>
+        <code>const User = ({ user }) => {</code>
+        <code>  return (</code>
+        <code>    //..</code>
+        <code class="mark">    {user.isBlockedMe ? (</code>
+        <code>      &lt;MemoOnlineIndicator isOnline={false} /&gt;</code>
+        <code>    ) : (</code>
+        <code>      &lt;OnlineIndicator isOnline={user.isOnline} /&gt;</code>
+        <code>    )}</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 118. User -->
+    <section class="slide">
+      <pre>
+        <code>const User = ({ user }) => {</code>
+        <code>  return (</code>
+        <code>    //..</code>
+        <code>    {user.isBlockedMe ? (</code>
+        <code class="mark">      &lt;MemoOnlineIndicator isOnline={false} /&gt;</code>
+        <code>    ) : (</code>
+        <code>      &lt;OnlineIndicator isOnline={user.isOnline} /&gt;</code>
+        <code>    )}</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 119. User -->
+    <section class="slide">
+      <pre>
+        <code>const User = ({ user }) => {</code>
+        <code>  return (</code>
+        <code>    //..</code>
+        <code>    {user.isBlockedMe ? (</code>
+        <code>      &lt;MemoOnlineIndicator isOnline={false} /&gt;</code>
+        <code>    ) : (</code>
+        <code class="mark">      &lt;OnlineIndicator isOnline={user.isOnline} /&gt;</code>
+        <code>    )}</code>
+        <code>  )</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <!-- 120. thank you -->
+    <section class="slide">
+      <img
+        class="cover"
+        src="pictures/thank-you.png"
+        alt="Hands on the orange typewriter in a park"
+      />
+    </section>
+
+    <footer class="badge">
+      <a href="https://github.com/shower/shower">Fork me on GitHub</a>
+    </footer>
+
+    <div class="progress"></div>
+
+    <script src="node_modules/@shower/core/dist/shower.js"></script>
+    <!-- Copyright © 2021 Yours Truly, Famous Inc. -->
+  </body>
+</html>
